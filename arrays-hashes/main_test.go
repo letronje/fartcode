@@ -1,4 +1,4 @@
-package containsdup
+package main
 
 import "testing"
 
@@ -27,8 +27,52 @@ func TestContainsDuplicate(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ContainsDuplicate(tt.args.nums); got != tt.want {
+			if got := containsDuplicate(tt.args.nums); got != tt.want {
 				t.Errorf("ContainsDuplicate() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestIsAnagram(t *testing.T) {
+	type args struct {
+		s string
+		t string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "",
+			args: args{
+				s: "anagram",
+				t: "nagaram",
+			},
+			want: true,
+		},
+		{
+			name: "",
+			args: args{
+				s: "rat",
+				t: "car",
+			},
+			want: false,
+		},
+		{
+			name: "",
+			args: args{
+				s: "gòlang",
+				t: "langgò",
+			},
+			want: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := isAnagram(tt.args.s, tt.args.t); got != tt.want {
+				t.Errorf("IsAnagram() = %v, want %v", got, tt.want)
 			}
 		})
 	}

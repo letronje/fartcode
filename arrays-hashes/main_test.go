@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestContainsDuplicate(t *testing.T) {
 	type args struct {
@@ -73,6 +76,66 @@ func TestIsAnagram(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := isAnagram(tt.args.s, tt.args.t); got != tt.want {
 				t.Errorf("IsAnagram() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_twoSum(t *testing.T) {
+	type args struct {
+		nums   []int
+		target int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		{
+			name: "",
+			args: args{
+				nums:   []int{2, 7, 11, 15},
+				target: 9,
+			},
+			want: []int{0, 1},
+		},
+		{
+			name: "",
+			args: args{
+				nums:   []int{2, 7, 2, 15},
+				target: 4,
+			},
+			want: []int{0, 2},
+		},
+		{
+			name: "",
+			args: args{
+				nums:   []int{3, 2, 4},
+				target: 6,
+			},
+			want: []int{1, 2},
+		},
+		{
+			name: "",
+			args: args{
+				nums:   []int{3, 2, 3},
+				target: 6,
+			},
+			want: []int{0, 2},
+		},
+		{
+			name: "",
+			args: args{
+				nums:   []int{2, 5, 5, 11},
+				target: 10,
+			},
+			want: []int{1, 2},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := twoSum(tt.args.nums, tt.args.target); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("twoSum() = %v, want %v", got, tt.want)
 			}
 		})
 	}
